@@ -36,13 +36,13 @@ def _pyfu_k_number(number: int) -> str:
         return data[number]
 
 
-def pyfu_k(expression: str) -> str:
+def pyfu_k(expression: str, add_exec: bool = True) -> str:
     '''Convert a python expression to a PyFu_k string.'''
     data = {
         0: '()==(()==())',
         1: '()==()',
     }
-    return 'exec(%s)' % '+'.join(map(
+    return ('exec(%s)' if add_exec else '%s') % '+'.join(map(
         lambda c: 'chr(%s)' % (
             data[ord(c)] if c in '\x00\x01'  # get rid of the useless parens.
             else _pyfu_k_number(ord(c))

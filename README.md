@@ -46,7 +46,9 @@ or
 ```python
 from pyfu_k import pyfu_k
 
-print(pyfu_k("print(1)"))
+print(pyfu_k("print(1)"))  # print the result of conversion
+
+exec(pyfu_k("print(1)", add_exec=False))  # execute the result of conversion
 ```
 
 ## How it works
