@@ -38,7 +38,18 @@ So far, pyfu_k can convert any number into the 5 characters `()=+*`. However I h
 ## Usage
 
 ```sh
-$ python pyfu_k.py
+$ python pyfu_k.py -h
+usage: pyfu_k.py [-h] [-v] [--no-exec] [code]
+
+Convert Python codes into 10 different characters: cehrx()=+*
+
+positional arguments:
+  code           code for the conversion (interactive mode if not given)
+
+optional arguments:
+  -h, --help     show this help message and exit
+  -v, --version  show program's version number and exit
+  --no-exec      remove the 'exec' function call in the converted code
 ```
 
 or
@@ -48,7 +59,7 @@ from pyfu_k import pyfu_k
 
 print(pyfu_k("print(1)"))  # print the result of conversion
 
-exec(pyfu_k("print(1)", add_exec=False))  # execute the result of conversion
+exec(pyfu_k("print(1)", no_exec=True))  # remove 'exec' and execute manually
 ```
 
 ## How it works
