@@ -12,7 +12,7 @@ The idea comes from [JSFuck](https://github.com/aemkei/jsfuck).
 
 ## Example
 
-`print(1)` would be converted into the following source:
+`print(1)` would be converted into the following source (1239 characters):
 
 ```python
 exec(chr((()==())+(()==())+((()==())+(()==())*((()==())+((()==())+(()==())+(()
@@ -39,7 +39,7 @@ So far, pyfu_k can convert any number into the 5 characters `()=+*`. However I h
 
 ```sh
 $ python pyfu_k.py -h
-usage: pyfu_k.py [-h] [-v] [--no-exec] [code]
+usage: pyfu_k.py [-h] [-v] [--no-exec] [--no-count] [code]
 
 Convert Python codes into 10 different characters: cehrx()=+*
 
@@ -49,7 +49,9 @@ positional arguments:
 optional arguments:
   -h, --help     show this help message and exit
   -v, --version  show program's version number and exit
-  --no-exec      remove the 'exec' function call in the converted code
+  --no-exec      remove the 'exec' function call in the converted code  
+  --no-count     disable the characters counting functionality
+$ python pyfu_k.py "print(1)"
 ```
 
 or
@@ -57,9 +59,9 @@ or
 ```python
 from pyfu_k import pyfu_k
 
-print(pyfu_k("print(1)"))  # print the result of conversion
+print(pyfu_k('print(1)'))  # print the result of conversion
 
-exec(pyfu_k("print(1)", no_exec=True))  # remove 'exec' and execute manually
+exec(pyfu_k('print(1)', no_exec=True))  # remove 'exec' and execute manually
 ```
 
 ## How it works

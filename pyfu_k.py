@@ -7,7 +7,7 @@ from argparse import ArgumentParser
 
 __all__ = ['pyfu_k', 'VERSION']
 
-VERSION = 'pyfu_k v0.3.1 with pyfu_k algorithm v0.2.0'
+VERSION = 'pyfu_k v0.3.2 with pyfu_k algorithm v0.2.0'
 
 
 @lru_cache()
@@ -68,6 +68,10 @@ def main():
         help="remove the 'exec' function call in the converted code"
     )
     parser.add_argument(
+        '--no-count', action='store_true',
+        help="disable the characters counting functionality"
+    )
+    parser.add_argument(
         'code', nargs='?',
         help='code for the conversion (interactive mode if not given)'
     )
@@ -78,11 +82,17 @@ def main():
         print('Use Ctrl-C to exit.')
         try:
             while True:
-                print(pyfu_k(input('(pyfu_k) '), args.no_exec))
+                result = pyfu_k(input('(pyfu_k) '), args.no_exec)
+                print(result)
+                if not args.no_count:
+                    print('(%s characters)' % len(result))
         except KeyboardInterrupt:
             pass
     else:
-        print(pyfu_k(args.code, args.no_exec))
+        result = pyfu_k(args.code, args.no_exec)
+        print(result)
+        if not args.no_count:
+            print('(%s characters)' % len(result))
 
 
 if __name__ == '__main__':
